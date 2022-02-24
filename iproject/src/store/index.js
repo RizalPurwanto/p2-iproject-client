@@ -7,16 +7,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isRegister: localStorage.verificationId ? true : false,
-    registrationDetails: '',
+    registrationDetails: {},
     fieldData: '',
-    sourceList: [],
+    sourceList: {},
 
 
   },
   mutations: {
     setRegistrationDetails(state, registrationDetails) {
       state.registrationDetails = registrationDetails
-      console.log(state.registrationDetails.data.verificationId, "INI STATE REGISTRATION DETAILS")
+      console.log(state.registrationDetails, "INI STATE REGISTRATION DETAILS")
       
     },
     setVerificationId(state) {
@@ -29,8 +29,8 @@ export default new Vuex.Store({
       console.log(state.fieldData, "INI FIELD DATA")
     },
     setSourceList(state, sourceList) {
-      state.sourceList = sourceList
-      console.log(state.sourceList, "INI FIELD DATA")
+      state.sourceList = Object.assign({}, ...sourceList.data.sources) 
+      console.log(state.sourceList, "INI SOURCE LIST STATE")
     },
     setRegister(state, boolean) {
       state.isRegister = boolean
@@ -41,18 +41,20 @@ export default new Vuex.Store({
      async fetchRegistrationDetails(context) {
       const verificationId = localStorage.getItem("verificationId")
       console.log(verificationId, "INI VERIFICATION ID")
-      axios.get('http://localhost:3000/verify/sources', {
+      try {
+        let resp = await axios.get('http://localhost:3000/verify/sources', {
         headers: {
           verificationId: verificationId
         }
       })
-        .then((resp) => {
-          console.log(resp.data, "INI  RESP REGISTRATION DETAILs")
-          context.commit("setRegistrationDetails", resp.data)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      console.log(resp.data, "INI  RESP REGISTRATION DETAILs")
+        context.commit("setRegistrationDetails", resp.data)
+        console.log("sudah commit setregister")
+      } catch (err) {
+        console.log(err);
+      }
+      
+        
     },
     async fetchFieldData(context, id) {
       const verificationId = localStorage.getItem("verificationId")

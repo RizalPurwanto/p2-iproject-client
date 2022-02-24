@@ -2,37 +2,40 @@
   <div class="container">
     <h3 class="text-center">Profile</h3>
     <div class="border mb-1 bg-white">
-      
       <ul>
         <li>
-          
           <b>Nama</b>:
-          {{registrationDetails.name.givenName._text}}
-          {{registrationDetails.name.surname._text }}
+
+          {{ this.registerDetails.registrationDetails.name.givenName._text }}
+          {{ this.registerDetails.registrationDetails.name.surname._text }}
         </li>
         <li>
           <b>Address</b>:
-          {{registrationDetails.currentResidentialAddress.streetName._text, }}
-          {{registrationDetails.currentResidentialAddress.streetType._text, }}
-          {{registrationDetails.currentResidentialAddress.streetNumber._text, }}
-          {{registrationDetails.currentResidentialAddress.suburb._text, }}
-          {{registrationDetails.currentResidentialAddress.state._text, }}
-          {{registrationDetails.currentResidentialAddress.country._text, }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetName._text, }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetType._text, }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetNumber._text, }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.suburb._text, }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.state._text, }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.country._text, }}
         </li>
         <li>
           <b>Date of Birth</b>:
-          {{ordinal(registrationDetails.dob.day._text)}}
+          {{ ordinal(this.registerDetails.registrationDetails.dob.day._text) }}
           {{
-            getMonthName(registrationDetails.dob.month._text)
+            getMonthName(
+              this.registerDetails.registrationDetails.dob.month._text
+            )
           }}
-          {{registrationDetails.dob.year._text, }}
+          {{this.registerDetails.registrationDetails.dob.year._text, }}
         </li>
-        <li><b>Email address</b>:  {{registrationDetails.email._text}}</li>
+        <li>
+          <b>Email address</b>:
+          {{ this.registerDetails.registrationDetails.email._text }}
+        </li>
       </ul>
     </div>
     <p></p>
     <div
-    
       class="
         text-center
         mb-2
@@ -44,13 +47,11 @@
       "
       style="height: 80px"
     >
-            <p class="mt-3 mb-0">You are not verified yet</p>
+      <p class="mt-3 mb-0">You are not verified yet</p>
       <p class="">Verify yourself by filling in data sources below</p>
     </div>
     <div
-    
       class="
-      
         text-center
         mb-2
         bg-gradient bg-secondary
@@ -61,20 +62,33 @@
       "
       style="height: 80px"
     >
-            
-      <strong> {{registrationDetails.fullNameRequired}} full names, {{registrationDetails.dobRequired}} date of birth and {{registrationDetails.fullAddressRequired}} full address are required from at least {{registrationDetails.minSourceAmount}} sources </strong>
+      <strong>
+        {{ this.registerDetails.fullNameRequired }} full names,
+        {{ this.registerDetails.dobRequired }} date of birth and
+        {{ this.registerDetails.fullAddressRequired }} full address are required
+        from at least {{ this.registerDetails.minSourceAmount }} sources
+      </strong>
     </div>
     <div
-    v-if="registrationDetails.overallVerificationStatus == 'VERIFIED'"
-      class="text-center mb-2 bg-gradient bg-success border rounded text-white h-auto"
+      v-if="this.registerDetails.overallVerificationStatus == 'VERIFIED'"
+      class="
+        text-center
+        mb-2
+        bg-gradient bg-success
+        border
+        rounded
+        text-white
+        h-auto
+      "
       style="height: 100px"
     >
       <div class="float-left"></div>
 
       <p class="mt-3 mb-0">Congratulations!</p>
       <p class="mb-0">You are verified</p>
-      <p>Click Next to finish the process
-        {{sourceList.nswregodvs}}
+      <p>
+        Click Next to finish the process
+        {{ this.sourceList.nswregodvs }}
       </p>
     </div>
     <p>Verification Progress</p>
@@ -83,34 +97,38 @@
       style="width: 50%; height: 30px"
     >
       <div
-      v-bind:style="[percentage == 0 ? `width: ${percentage}%`  :`width: ${percentage}%` ]"
-
+        :style="{ width: `${this.percentage}%` }"
         ref="progressBar"
-        style="height: 30px; text-align: center; "
+        style="height: 30px; text-align: center"
         class="progress-bar bg-success"
         role="progressbar"
         aria-valuenow="2"
         aria-valuemin="0"
         aria-valuemax="5"
       >
-        {{percentage}}%
+        {{ this.percentage }}%
       </div>
       <br />
       <br />
       <br />
     </div>
-    
+    {{ this.sourceList.nswregodvs }}
     <button
-    
-    v-bind:class="[sourceList.nswregodvs ==='VERIFIED' ? 'btn-success' : sourceList.nswregodvs ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    @click="driverLicenseHandler"
+      v-bind:class="[
+        this.sourceList.nswregodvs === 'VERIFIED'
+          ? 'btn-success'
+          : this.sourceList.nswregodvs === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
+      @click="driverLicenseHandler"
       type="button"
       data-toggle="tooltip"
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.nswregodvs ==='FAILED'"
+        v-if="this.sourceList.nswregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -120,11 +138,11 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-        
-      >
+        />
+      </svg>
+
       <svg
-      v-if="sourceList.nswregodvs ==='VERIFIED'"
+        v-if="this.sourceList.nswregodvs === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -138,16 +156,21 @@
       >New South Wales Driver's Licence - DVS (name, date of birth)
     </button>
     <button
-    
-    v-bind:class="[sourceList.vicregodvs ==='VERIFIED' ? 'btn-success' : sourceList.vicregodvs ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    @click="driverLicenseHandler"
+      v-bind:class="[
+        sourceList.vicregodvs === 'VERIFIED'
+          ? 'btn-success'
+          : sourceList.vicregodvs === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
+      @click="driverLicenseHandler"
       type="button"
       data-toggle="tooltip"
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.vicregodvs ==='FAILED'"
+        v-if="sourceList.vicregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -157,10 +180,10 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-      >
+        />
+      </svg>
       <svg
-      v-if="sourceList.vicregodvs ==='VERIFIED'"
+        v-if="sourceList.vicregodvs === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -175,15 +198,20 @@
     </button>
 
     <button
-    
-    v-bind:class="[sourceList.qldregodvs ==='VERIFIED' ? 'btn-success' : sourceList.qldregodvs ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    @click="driverLicenseHandler"
+      v-bind:class="[
+        sourceList.qldregodvs === 'VERIFIED'
+          ? 'btn-success'
+          : sourceList.qldregodvs === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
+      @click="driverLicenseHandler"
       type=""
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.qldregodvs ==='FAILED'"
+        v-if="sourceList.qldregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -193,10 +221,10 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-      >
+        />
+      </svg>
       <svg
-      v-if="sourceList.qldregodvs ==='VERIFIED'"
+        v-if="sourceList.qldregodvs === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -211,15 +239,20 @@
     </button>
 
     <button
-    
-    v-bind:class="[sourceList.saregodvs ==='VERIFIED' ? 'btn-success' : sourceList.saregodvs ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    @click="driverLicenseHandler"
+      v-bind:class="[
+        sourceList.saregodvs === 'VERIFIED'
+          ? 'btn-success'
+          : sourceList.saregodvs === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
+      @click="driverLicenseHandler"
       type=""
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.saregodvs ==='FAILED'"
+        v-if="sourceList.saregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -229,10 +262,10 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-      >
+        />
+      </svg>
       <svg
-      v-if="sourceList.saregodvs ==='VERIFIED'"
+        v-if="sourceList.saregodvs === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -247,15 +280,20 @@
     </button>
 
     <button
-    
-    v-bind:class="[sourceList.waregodvs ==='VERIFIED' ? 'btn-success' : sourceList.waregodvs ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    @click="driverLicenseHandler"
+      v-bind:class="[
+        sourceList.waregodvs === 'VERIFIED'
+          ? 'btn-success'
+          : sourceList.waregodvs === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
+      @click="driverLicenseHandler"
       type=""
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.waregodvs ==='FAILED'"
+        v-if="sourceList.waregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -265,10 +303,10 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-      >
+        />
+      </svg>
       <svg
-      v-if="sourceList.waregodvs ==='VERIFIED'"
+        v-if="sourceList.waregodvs === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -283,15 +321,20 @@
     </button>
 
     <button
-    @click="driverLicenseHandler"
-    v-bind:class="[sourceList.actregodvs ==='VERIFIED' ? 'btn-success' : sourceList.actregodvs ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    
+      @click="driverLicenseHandler"
+      v-bind:class="[
+        sourceList.actregodvs === 'VERIFIED'
+          ? 'btn-success'
+          : sourceList.actregodvs === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
       type=""
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.actregodvs ==='FAILED'"
+        v-if="sourceList.actregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -301,10 +344,10 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-      >
+        />
+      </svg>
       <svg
-      v-if="sourceList.actregodvs ==='VERIFIED'"
+        v-if="sourceList.actregodvs === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -316,19 +359,23 @@
           d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
         /></svg
       >Australian Capital Territory Driver's Licence - DVS (name, date of birth)
-
     </button>
 
     <button
-    @click="visaHandler"
-    v-bind:class="[sourceList.visa ==='VERIFIED' ? 'btn-success' : sourceList.visa ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    
+      @click="visaHandler"
+      v-bind:class="[
+        sourceList.visa === 'VERIFIED'
+          ? 'btn-success'
+          : sourceList.visa === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
       type=""
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.visa ==='FAILED'"
+        v-if="sourceList.visa === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -338,10 +385,10 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-      >
+        />
+      </svg>
       <svg
-      v-if="sourceList.visa ==='VERIFIED'"
+        v-if="sourceList.visa === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -356,15 +403,20 @@
     </button>
 
     <button
-    @click="aecHandler"
-    v-bind:class="[sourceList.aec ==='VERIFIED' ? 'btn-success' : sourceList.aec ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    
+      @click="aecHandler"
+      v-bind:class="[
+        sourceList.aec === 'VERIFIED'
+          ? 'btn-success'
+          : sourceList.aec === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
       type=""
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.aec ==='FAILED'"
+        v-if="sourceList.aec === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -374,10 +426,10 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-      >
+        />
+      </svg>
       <svg
-      v-if="sourceList.aec ==='VERIFIED'"
+        v-if="sourceList.aec === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -391,17 +443,21 @@
       >Australian Electoral Roll (name, address)
     </button>
 
-
     <button
-    @click="dnbHandler"
-    v-bind:class="[sourceList.dnb ==='VERIFIED' ? 'btn-success' : sourceList.dnb ==='FAILED' ?'btn-danger' : 'bg-secondary' ]"
-    
+      @click="dnbHandler"
+      v-bind:class="[
+        sourceList.dnb === 'VERIFIED'
+          ? 'btn-success'
+          : sourceList.dnb === 'FAILED'
+          ? 'btn-danger'
+          : 'bg-secondary',
+      ]"
       type=""
       class="btn btn-secondary mb-2"
-      style="; display: inline-block; width: 100%"
+      style="display: inline-block; width: 100%"
     >
       <svg
-      v-if="sourceList.dnb ==='FAILED'"
+        v-if="sourceList.dnb === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -411,10 +467,10 @@
       >
         <path
           d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-        /></svg
-      >
+        />
+      </svg>
       <svg
-      v-if="sourceList.dnb ==='VERIFIED'"
+        v-if="sourceList.dnb === 'VERIFIED'"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -427,11 +483,17 @@
         /></svg
       >Credit History File (name, and/or address and/or date of birth)
     </button>
-    
-    <br />
 
-   
-    <button v-if="registrationDetails.overallVerificationStatus == 'VERIFIED'" type="button" class="btn btn-success float-right mb-2">Next</button>
+    <br />
+    {{ this.registerDetails.overallVerificationStatus }}
+
+    <button
+      v-if="this.registerDetails.overallVerificationStatus == 'VERIFIED'"
+      type="button"
+      class="btn btn-success float-right mb-2"
+    >
+      Next
+    </button>
   </div>
 </template>
 
@@ -442,35 +504,41 @@ export default {
   name: "Home",
   components: {},
   data() {
-        return {
-            
-            sourceNames :[
-              `New South Wales Driver's Licence - DVS`,
-              `Victorian Driver's Licence - DVS`,
-              `Queensland Driver's Licence`,
-              `South Australian Driver's Licence`,
-              `Western Australian Driver's Licence`,
-              `Australian Capital Territory Driver's Licence`,
-              `Australian Visas`,
-              `Australian Electoral Roll`,
-              `Credit History File`
-            ]
-        }
-    },
+    return {
+      registers: undefined,
+      sourceNames: [
+        `New South Wales Driver's Licence - DVS`,
+        `Victorian Driver's Licence - DVS`,
+        `Queensland Driver's Licence`,
+        `South Australian Driver's Licence`,
+        `Western Australian Driver's Licence`,
+        `Australian Capital Territory Driver's Licence`,
+        `Australian Visas`,
+        `Australian Electoral Roll`,
+        `Credit History File`,
+      ],
+    };
+  },
   created() {
     this.fetchRegistrationDetails();
-    console.log(this.$store.state.registrationDetails, "INI REGIST DI CREATED")
-    this.fetchSourceList()
-    console.log(this.$store.state.sourceList, "INI SOURCE DI CREATED")
+    console.log(this.$store.state.registrationDetails, "INI REGIST DI CREATED");
+    this.fetchSourceList();
+    console.log(this.$store.state.sourceList, "INI SOURCE DI CREATED");
   },
+  // beforeCreated() {
+  //   this.fetchRegistrationDetails();
+  //   console.log(this.$store.state.registrationDetails, "INI REGIST DI CREATED")
+  //    this.fetchSourceList()
+  //   console.log(this.$store.state.sourceList, "INI SOURCE DI CREATED")
+  // },
 
   methods: {
     async fetchRegistrationDetails() {
-      console.log("ini fetch registration")
       await this.$store.dispatch("fetchRegistrationDetails");
+      console.log("ini fetch registration");
     },
     async fetchSourceList() {
-      console.log('masuk sourcelist')
+      console.log("masuk sourcelist");
       await this.$store.dispatch("fetchSourceList");
     },
     getMonthName(month) {
@@ -493,37 +561,42 @@ export default {
       return number + suffix;
     },
     driverLicenseHandler() {
-      this.$router.push('/driverlicence')
+      this.$router.push("/driverlicence");
     },
     aecHandler() {
-      this.$router.push('/aec')
+      this.$router.push("/aec");
     },
     visaHandler() {
-      this.$router.push('/visa')
+      this.$router.push("/visa");
       //
     },
     dnbHandler() {
-      this.$router.push('/dnb')
-    }
+      this.$router.push("/dnb");
+    },
     // setProgressBarWidth() {
     //   console.log()
     //   this.$refs['progressBar'].style.width = '100%';
     // }
   },
   computed: {
-     registrationDetails() {
-      console.log(this.$store.state.registrationDetails, "INI DI COMPUTED")
-      
-      return  this.$store.state.registrationDetails.registrationDetails;
+    registerDetails() {
+      console.log(this.$store.state.registrationDetails, "INI DI COMPUTED");
+
+      return this.$store.state.registrationDetails;
     },
     percentage() {
-      return (this.$store.state.registrationDetails.fullNameCount + this.$store.state.registrationDetails.fullAddressCount + this.$store.state.registrationDetails.dobCount)/5*100
+      return (
+        ((this.$store.state.registrationDetails.fullNameCount +
+          this.$store.state.registrationDetails.fullAddressCount +
+          this.$store.state.registrationDetails.dobCount) /
+          5) *
+        100
+      );
     },
     sourceList() {
-      return Object.assign({}, ...this.$store.state.sourceList.data.sources);
+      console.log(this.$store.state.sourceList);
+      return this.$store.state.sourceList;
     },
-    
-    
   },
 };
 </script>
