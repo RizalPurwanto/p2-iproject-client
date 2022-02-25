@@ -171,11 +171,11 @@ export default new Vuex.Store({
       })
         .then((resp) => {
           console.log(resp, "INI Visa")
-
+          this.$router.push("/");
         })
         .catch((err) => {
-          Swal.fire('error')
-          console.log(err);
+          Swal.fire(err.response.data.error)
+          console.log(err.response.data, "INI ERROR");
         });
     }
 

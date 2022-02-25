@@ -379,7 +379,7 @@ export default {
         visaNumber: submitEvent.target.elements.visaNumber.value,
         surname: submitEvent.target.elements.surname.value,
         country: submitEvent.target.elements.country.value,
-        dob: submitEvent.target.elements.dob.value,
+        dob: submitEvent.target.elements.dob.value.split('-').reverse().join('/'),
         tandc: this.tandc ? 'on' : ''
       };
      

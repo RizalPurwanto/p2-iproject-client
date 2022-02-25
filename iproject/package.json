@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "firebase-tools": "^10.2.1",
     "sweetalert2": "^11.4.4",
     "vue": "^2.6.11",
     "vue-hacktiv8-footer": "^0.0.9",

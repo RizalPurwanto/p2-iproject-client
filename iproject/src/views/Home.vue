@@ -121,7 +121,7 @@
           ? 'btn-success'
           : this.sourceList.nswregodvs === 'FAILED'
           ? 'btn-danger'
-          : 'bg-secondary',
+          : 'btn-secondary',
       ]"
       @click="driverLicenseHandler"
       type="button"
@@ -160,11 +160,12 @@
     <button
       v-bind:class="[
         sourceList.vicregodvs === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success diabled'
           : sourceList.vicregodvs === 'FAILED'
           ? 'btn-danger'
-          : 'bg-secondary',
+          : 'btn-secondary',
       ]"
+      
       @click="driverLicenseHandler"
       type="button"
       data-toggle="tooltip"
@@ -202,10 +203,10 @@
     <button
       v-bind:class="[
         sourceList.qldregodvs === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success diabled'
           : sourceList.qldregodvs === 'FAILED'
           ? 'btn-danger'
-          : 'bg-secondary',
+          : 'btn-secondary',
       ]"
       @click="driverLicenseHandler"
       type=""
@@ -243,10 +244,10 @@
     <button
       v-bind:class="[
         sourceList.saregodvs === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success diabled'
           : sourceList.saregodvs === 'FAILED'
           ? 'btn-danger'
-          : 'bg-secondary',
+          : 'btn-secondary',
       ]"
       @click="driverLicenseHandler"
       type=""
@@ -284,10 +285,10 @@
     <button
       v-bind:class="[
         sourceList.waregodvs === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success diabled'
           : sourceList.waregodvs === 'FAILED'
           ? 'btn-danger'
-          : 'bg-secondary',
+          : 'btn-secondary',
       ]"
       @click="driverLicenseHandler"
       type=""
@@ -326,10 +327,10 @@
       @click="driverLicenseHandler"
       v-bind:class="[
         sourceList.actregodvs === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success diabled'
           : sourceList.actregodvs === 'FAILED'
           ? 'btn-danger'
-          : 'bg-secondary',
+          : 'btn-secondary',
       ]"
       type=""
       class="btn btn-secondary mb-2"
@@ -367,11 +368,12 @@
       @click="visaHandler"
       v-bind:class="[
         sourceList.visa === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success disabled'   
           : sourceList.visa === 'FAILED'
-          ? 'btn-danger'
-          : 'bg-secondary',
+          ? 'btn-danger disabled'
+          : 'btn-secondary',
       ]"
+     
       type=""
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
@@ -408,10 +410,10 @@
       @click="aecHandler"
       v-bind:class="[
         sourceList.aec === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success diabled'
           : sourceList.aec === 'FAILED'
           ? 'btn-danger'
-          : 'bg-secondary',
+          : 'btn-secondary',
       ]"
       type=""
       class="btn btn-secondary mb-2"
@@ -449,10 +451,10 @@
       @click="dnbHandler"
       v-bind:class="[
         sourceList.dnb === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success diabled'
           : sourceList.dnb === 'FAILED'
           ? 'btn-danger'
-          : 'bg-secondary',
+          : 'btn-secondary',
       ]"
       type=""
       class="btn btn-secondary mb-2"

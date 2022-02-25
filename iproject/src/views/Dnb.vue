@@ -15,7 +15,7 @@
         Transfer so that we can discuss other options with you.</p>
     </div>
 
-    <form class="p-2">
+    <form class="p-2" @submit.prevent="dnbSubmit">
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="tandc" name="tandc" value="on">
         <label class="form-check-label" for="exampleCheck1">I agree to provide consent and accept the above terms and
@@ -32,6 +32,10 @@ export default {
     name:"Dnb",
      methods:  {
         backHandler() {
+           this.$router.push("/");
+        },
+        dnbSubmit(submitEvent) {
+            console.log(submitEvent.data)
            this.$router.push("/");
         }
     }
