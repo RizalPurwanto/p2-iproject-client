@@ -45,7 +45,7 @@ export default new Vuex.Store({
       const verificationId = localStorage.getItem("verificationId")
       console.log(verificationId, "INI VERIFICATION ID")
       try {
-        let resp = await axios.get(`https://cors-anywhere.herokuapp.com/${baseURL}/verify/sources`, {
+        let resp = await axios.get(`${baseURL}/verify/sources`, {
         headers: {
           verificationId: verificationId
         }
