@@ -2,6 +2,8 @@ import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 import Swal from "sweetalert2"
+const baseURL = 'https://iprojectgreenid.herokuapp.com'
+const localURL = 'http://localhost:3000'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -43,7 +45,7 @@ export default new Vuex.Store({
       const verificationId = localStorage.getItem("verificationId")
       console.log(verificationId, "INI VERIFICATION ID")
       try {
-        let resp = await axios.get('http://localhost:3000/verify/sources', {
+        let resp = await axios.get(`https://cors-anywhere.herokuapp.com/${baseURL}/verify/sources`, {
         headers: {
           verificationId: verificationId
         }
@@ -60,7 +62,7 @@ export default new Vuex.Store({
     async fetchFieldData(context, id) {
       const verificationId = localStorage.getItem("verificationId")
       console.log(verificationId, "INI VERIFICATION ID")
-      axios.get(`http://localhost:3000/verify/sources/${id}`, {
+      axios.get(`${baseURL}/verify/sources/${id}`, {
         headers: {
           verificationId: verificationId
         }
@@ -101,7 +103,7 @@ export default new Vuex.Store({
         dob: '',
         tandc: ''
       }
-      axios.post('http://localhost:3000/verify/driverlicence/actregodvs', {
+      axios.post(`${localURL}/verify/driverlicence/actregodvs`, {
         body,
         headers: {
           verificationId: verificationId
