@@ -1,7 +1,7 @@
 import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
-
+import Swal from "sweetalert2"
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -30,6 +30,7 @@ export default new Vuex.Store({
     },
     setSourceList(state, sourceList) {
       state.sourceList = Object.assign({}, ...sourceList.data.sources) 
+      console.log(sourceList.data.sources, "INI SOURCE LIST STATE AWAL")
       console.log(state.sourceList, "INI SOURCE LIST STATE")
     },
     setRegister(state, boolean) {
@@ -127,6 +128,7 @@ export default new Vuex.Store({
       })
         .then((resp) => {
           console.log(resp, "INI AEC")
+          this.$router.push("/")
           
         })
         .catch((err) => {
@@ -160,24 +162,19 @@ export default new Vuex.Store({
       console.log(payload, "INI PAYLOAD")
       const verificationId = localStorage.getItem("verificationId")
       console.log(verificationId, "INI VERIFICATION ID")
-      let body = {
-        visaNumber: '',
-        surname: '',
-        dob: '',
-        country: '',
-        tandc: ''
+      let body = payload
+      const headers = {
+        "verificationId": verificationId
       }
-      axios.post('http://localhost:3000/verify/dnb', {
-        body,
-        headers: {
-          verificationId: verificationId
-        }
+      axios.post('http://localhost:3000/verify/visa', body, {
+       headers:headers        
       })
         .then((resp) => {
-          console.log(resp, "INI DNB")
+          console.log(resp, "INI Visa")
 
         })
         .catch((err) => {
+          Swal.fire('error')
           console.log(err);
         });
     }

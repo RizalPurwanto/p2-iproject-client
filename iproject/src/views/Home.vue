@@ -6,36 +6,37 @@
         <li>
           <b>Nama</b>:
 
-          {{ this.registerDetails.registrationDetails.name.givenName._text }}
-          {{ this.registerDetails.registrationDetails.name.surname._text }}
+          {{ this.registerDetails.registrationDetails.name.givenName._text || ''}}
+          {{ this.registerDetails.registrationDetails.name.surname._text || ''}}
         </li>
         <li>
           <b>Address</b>:
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetName._text, }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetType._text, }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetNumber._text, }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.suburb._text, }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.state._text, }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.country._text, }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetName || ' ' }}
+          {{ this.registerDetails.registrationDetails.currentResidentialAddress.streetType || ' ' }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetNumber || ' ' }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.suburb || ' ' }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.state || ' ' }}
+          {{this.registerDetails.registrationDetails.currentResidentialAddress.country || ' ' }}
         </li>
         <li>
           <b>Date of Birth</b>:
-          {{ ordinal(this.registerDetails.registrationDetails.dob.day._text) }}
+          {{ ordinal(this.registerDetails.registrationDetails.dob.day._text ) || '' }}
           {{
             getMonthName(
               this.registerDetails.registrationDetails.dob.month._text
-            )
+            ) || ''
           }}
-          {{this.registerDetails.registrationDetails.dob.year._text, }}
+          {{this.registerDetails.registrationDetails.dob.year._text || '' }}
         </li>
         <li>
           <b>Email address</b>:
-          {{ this.registerDetails.registrationDetails.email._text }}
+          {{ this.registerDetails.registrationDetails.email._text || ''}}
         </li>
       </ul>
     </div>
     <p></p>
     <div
+    v-if="this.registerDetails.overallVerificationStatus !== 'VERIFIED'"
       class="
         text-center
         mb-2
@@ -51,6 +52,7 @@
       <p class="">Verify yourself by filling in data sources below</p>
     </div>
     <div
+    v-if="this.registerDetails.overallVerificationStatus !== 'VERIFIED'"
       class="
         text-center
         mb-2
@@ -88,7 +90,7 @@
       <p class="mb-0">You are verified</p>
       <p>
         Click Next to finish the process
-        {{ this.sourceList.nswregodvs }}
+        
       </p>
     </div>
     <p>Verification Progress</p>
@@ -585,10 +587,14 @@ export default {
       return this.$store.state.registrationDetails;
     },
     percentage() {
-      return (
-        ((this.$store.state.registrationDetails.fullNameCount +
+      console.log("INI RATIO",  (Math.floor((this.$store.state.registrationDetails.fullNameCount +
           this.$store.state.registrationDetails.fullAddressCount +
-          this.$store.state.registrationDetails.dobCount) /
+          this.$store.state.registrationDetails.dobCount)/5)*5) /
+          5)
+      return (
+        (((2-this.$store.state.registrationDetails.fullNameRequired) +
+          (2-this.$store.state.registrationDetails.fullAddressRequired) +
+          (1-this.$store.state.registrationDetails.dobRequired)) /
           5) *
         100
       );

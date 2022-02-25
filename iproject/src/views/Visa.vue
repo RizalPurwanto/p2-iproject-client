@@ -31,7 +31,8 @@
 
       <br />
       <div class="form-group">
-        <label for="dob">{{registrationDetails.registrationDetails.dob}}Date of Birth</label>
+
+        <label for="dob">{{registrationDetails.registrationDetails.dob.year._text}}-{{registrationDetails.registrationDetails.dob.month._text}}-{{registrationDetails.registrationDetails.dob.day._text}} {{this.dobFormat}}  Date of Birth  </label>
         <input
         v-model="dobFormat"
          
@@ -362,7 +363,7 @@ export default {
   name: "Visa",
     data() {
         return {
-            dobFormat : ''
+            
         }
     },
   methods: {
@@ -382,29 +383,38 @@ export default {
         tandc: this.tandc ? 'on' : ''
       };
      
-      console.log(body);
-    //   this.$store.dispatch("postAec", body);
+      console.log(body, "INI BODY FORM ");
+    this.$store.dispatch("postVisa", body);
     //   this.$router.push("/");
     },
     async fetchRegistrationDetails() {
       await this.$store.dispatch("fetchRegistrationDetails");
     },
-//     async handleCheck() {
-//         if(document.getElementById("tandc").checked) {
-//     document.getElementById('tandcHidden').disabled = true;
-// }
-//     }
+
   },
   created() {
     this.fetchRegistrationDetails();
   },
-  mounted() {
-      
-  },
+  
   computed: {
     registrationDetails() {
       return this.$store.state.registrationDetails;
     },
+    dobFormat(){
+        //let dob ='1997-03-22'
+        let day = this.$store.state.registrationDetails.registrationDetails.dob.day._text
+        let month =this.$store.state.registrationDetails.registrationDetails.dob.month._text
+        let year = this.$store.state.registrationDetails.registrationDetails.dob.year._text
+        if (Number(day) < 10) {
+            day = '0'+day
+        }
+        if (Number(month) < 10) {
+            month = '0'+month
+        }
+         let dob =`${year}-${month}-${day}`
+         console.log(dob, "INI DOB COMPUTED")
+        return dob
+    }
   },
 };
 </script>
