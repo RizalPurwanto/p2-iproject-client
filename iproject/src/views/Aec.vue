@@ -34,7 +34,7 @@
       <div class="form-group">
         <label for="email">Flat Number</label>
         <input
-        
+         
           type="text"
           class="form-control"
           id="flatNumber"
@@ -47,7 +47,7 @@
       <div class="form-group">
         <label for="streetNumber">Street Number</label>
         <input
-        v-model="registrationDetails.registrationDetails.currentResidentialAddress.streetNumber._text"
+        v-model="registrationDetails.registrationDetails.currentResidentialAddress.streetNumber"
           type="text"
           class="form-control"
           id="streetNumber"
@@ -60,7 +60,7 @@
       <div class="form-group">
         <label for="streetName">Street Name</label>
         <input
-         v-model="registrationDetails.registrationDetails.currentResidentialAddress.streetName._text"
+         v-model="registrationDetails.registrationDetails.currentResidentialAddress.streetName"
           type="text"
           class="form-control"
           id="streetName"
@@ -74,7 +74,7 @@
         <label for="streetNumber">Street Type</label>
         <br />
         
-        <select  v-model="registrationDetails.registrationDetails.currentResidentialAddress.streetType._text" name="streetType" id="" aria-required="false">
+        <select  v-model="registrationDetails.registrationDetails.currentResidentialAddress.streetType" name="streetType" id="" aria-required="false">
             
           <option value="" selected="selected" disabled>
             Please select street type
@@ -104,7 +104,7 @@
       <div class="form-group">
         <label for="suburb">Suburb</label>
         <input
-        v-model="registrationDetails.registrationDetails.currentResidentialAddress.suburb._text" 
+       v-model="registrationDetails.registrationDetails.currentResidentialAddress.suburb" 
           type="text"
           class="form-control"
           id="suburb"
@@ -117,7 +117,7 @@
       <div class="form-group">
         <label for="state">State</label>
         <br />
-        <select v-model="registrationDetails.registrationDetails.currentResidentialAddress.state._text"  name="state" id="" aria-required="true">
+        <select v-model="registrationDetails.registrationDetails.currentResidentialAddress.state"  name="state" id="" aria-required="true">
           <option value="" selected="selected" disabled>
             Please select State
           </option>
@@ -135,7 +135,7 @@
       <div class="form-group">
         <label for="postcode">Postcode</label>
         <input
-        v-model="registrationDetails.registrationDetails.currentResidentialAddress.postcode._text"
+        v-model="registrationDetails.registrationDetails.currentResidentialAddress.postcode"
           type="number"
           class="form-control"
           id="postcode"
@@ -179,7 +179,7 @@ export default {
       };
       console.log(body)
       this.$store.dispatch("postAec", body)
-      this.$router.push("/")
+      
     },
     async fetchRegistrationDetails() {
       await this.$store.dispatch("fetchRegistrationDetails");

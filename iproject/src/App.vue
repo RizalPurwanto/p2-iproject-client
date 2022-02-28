@@ -5,24 +5,25 @@
    
     <router-view></router-view >
     
-    <!-- <Footer></Footer> -->
+    
     
   </div>
-  <HFooter></HFooter>
+  <Footer></Footer>
+  <!-- <HFooter></HFooter> -->
 </div>
 
 </template>
 
 <script>
 import Header from "../src/components/Header.vue"
-//import Footer from "../src/components/Footer.vue"
-import HFooter from 'vue-hacktiv8-footer'
+import Footer from "../src/components/Footer.vue"
+//import HFooter from 'vue-hacktiv8-footer'
 export default {
   name: "App",
   components: {
     Header,
-    // Footer,
-    HFooter
+    Footer,
+   // HFooter
     
   }
 }
@@ -99,7 +100,7 @@ b {
 }
 
   footer {
-    position: fixed;
+    position: static;
     margin-top: 0%;
     width: 100%;
     height: 100px;

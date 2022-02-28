@@ -36,7 +36,7 @@
     </div>
     <p></p>
     <div
-    v-if="this.registerDetails.overallVerificationStatus !== 'VERIFIED'"
+    v-if="this.registerDetails.overallVerificationStatus !== 'VERIFIED' && this.registerDetails.overallVerificationStatus !== 'VERIFIED_WITH_CHANGES'"
       class="
         text-center
         mb-2
@@ -50,9 +50,10 @@
     >
       <p class="mt-3 mb-0">You are not verified yet</p>
       <p class="">Verify yourself by filling in data sources below</p>
+     
     </div>
     <div
-    v-if="this.registerDetails.overallVerificationStatus !== 'VERIFIED'"
+    v-if="this.registerDetails.overallVerificationStatus !== 'VERIFIED' && this.registerDetails.overallVerificationStatus !== 'VERIFIED_WITH_CHANGES'"
       class="
         text-center
         mb-2
@@ -72,7 +73,7 @@
       </strong>
     </div>
     <div
-      v-if="this.registerDetails.overallVerificationStatus == 'VERIFIED'"
+      v-if="this.registerDetails.overallVerificationStatus == 'VERIFIED' || this.registerDetails.overallVerificationStatus =='VERIFIED_WITH_CHANGES'"
       class="
         text-center
         mb-2
@@ -94,6 +95,7 @@
       </p>
     </div>
     <p>Verification Progress</p>
+     <p>{{this.registerDetails.overallVerificationStatus}}</p>
     <div
       class="progress mb-2 bg-light border border-dark"
       style="width: 50%; height: 30px"
@@ -114,21 +116,24 @@
       <br />
       <br />
     </div>
-    {{ this.sourceList.nswregodvs }}
+    
     <button
       v-bind:class="[
         this.sourceList.nswregodvs === 'VERIFIED'
-          ? 'btn-success'
+          ? 'btn-success disabled'
+          : this.sourceList.nswregodvs === 'PENDING'
+          ? 'btn-warning disabled'
           : this.sourceList.nswregodvs === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
       ]"
-      @click="driverLicenseHandler"
+      @click="driverLicenseHandler('nswregodvs')"
       type="button"
       data-toggle="tooltip"
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
+    <p v-if="this.sourceList.nswregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="this.sourceList.nswregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -160,18 +165,21 @@
     <button
       v-bind:class="[
         sourceList.vicregodvs === 'VERIFIED'
-          ? 'btn-success diabled'
+          ? 'btn-success disabled'
+           : sourceList.vicregodvs === 'PENDING'
+          ? 'btn-warning disabled'
           : sourceList.vicregodvs === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
       ]"
       
-      @click="driverLicenseHandler"
+      @click="driverLicenseHandler('vicregodvs')"
       type="button"
       data-toggle="tooltip"
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
+    <p v-if="this.sourceList.vicregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.vicregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -203,16 +211,19 @@
     <button
       v-bind:class="[
         sourceList.qldregodvs === 'VERIFIED'
-          ? 'btn-success diabled'
+          ? 'btn-success disabled'
+           :sourceList.qldregodvs === 'PENDING'
+          ? 'btn-warning'
           : sourceList.qldregodvs === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
       ]"
-      @click="driverLicenseHandler"
+      @click="driverLicenseHandler('qldregodvs')"
       type=""
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
+    <p v-if="this.sourceList.qldregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.qldregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -244,16 +255,19 @@
     <button
       v-bind:class="[
         sourceList.saregodvs === 'VERIFIED'
-          ? 'btn-success diabled'
+          ? 'btn-success disabled'
+           : sourceList.saregodvs === 'PENDING'
+          ? 'btn-warning disabled'
           : sourceList.saregodvs === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
       ]"
-      @click="driverLicenseHandler"
+      @click="driverLicenseHandler('saregodvs')"
       type=""
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
+    <p v-if="this.sourceList.saregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.saregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -285,16 +299,19 @@
     <button
       v-bind:class="[
         sourceList.waregodvs === 'VERIFIED'
-          ? 'btn-success diabled'
+          ? 'btn-success disabled'
+           : sourceList.saregodvs === 'PENDING'
+          ? 'btn-warning disabled'
           : sourceList.waregodvs === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
       ]"
-      @click="driverLicenseHandler"
+      @click="driverLicenseHandler('waregodvs')"
       type=""
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
+    <p v-if="this.sourceList.waregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.waregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -324,18 +341,22 @@
     </button>
 
     <button
-      @click="driverLicenseHandler"
+      @click="driverLicenseHandler('actregodvs')"
       v-bind:class="[
         sourceList.actregodvs === 'VERIFIED'
-          ? 'btn-success diabled'
+          ? 'btn-success disabled'
+           : this.sourceList.actregodvs === 'PENDING'
+          ? 'btn-warning disabled'
           : sourceList.actregodvs === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
       ]"
+      
       type=""
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
+    <p v-if="this.sourceList.actregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.actregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -361,7 +382,7 @@
         <path
           d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
         /></svg
-      >Australian Capital Territory Driver's Licence - DVS (name, date of birth)
+      >Australian Capital Territory Driver's Licence - DVS (name, date of birth) 
     </button>
 
     <button
@@ -369,6 +390,8 @@
       v-bind:class="[
         sourceList.visa === 'VERIFIED'
           ? 'btn-success disabled'   
+           : sourceList.visa === 'PENDING'
+          ? 'btn-warning disabled'
           : sourceList.visa === 'FAILED'
           ? 'btn-danger disabled'
           : 'btn-secondary',
@@ -409,8 +432,11 @@
     <button
       @click="aecHandler"
       v-bind:class="[
-        sourceList.aec === 'VERIFIED'
-          ? 'btn-success diabled'
+        sourceList.aec === 'VERIFIED' ||  sourceList.aec === 'VERIFIED_WITH_CHANGES'
+          ? 'btn-success disabled'
+          
+           : sourceList.aec === 'PENDING'
+          ? 'btn-warning disabled'
           : sourceList.aec === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
@@ -451,7 +477,9 @@
       @click="dnbHandler"
       v-bind:class="[
         sourceList.dnb === 'VERIFIED'
-          ? 'btn-success diabled'
+          ? 'btn-success disabled'
+           : sourceList.dnb === 'PENDING'
+          ? 'btn-warning disabled'
           : sourceList.dnb === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
@@ -489,15 +517,23 @@
     </button>
 
     <br />
-    {{ this.registerDetails.overallVerificationStatus }}
+    
 
     <button
-      v-if="this.registerDetails.overallVerificationStatus == 'VERIFIED'"
+      v-if="this.registerDetails.overallVerificationStatus === 'VERIFIED' || this.registerDetails.overallVerificationStatus ==='VERIFIED_WITH_CHANGES'"
       type="button"
       class="btn btn-success float-right mb-2"
+      @click.prevent="nextHandler"
     >
       Next
     </button>
+    <button
+        type="button"
+        class="btn btn-danger float-left mb-2"
+        @click.prevent="exitHandler"
+      >
+        Exit
+      </button>
   </div>
 </template>
 
@@ -537,6 +573,15 @@ export default {
   // },
 
   methods: {
+    async nextHandler() {
+      await this.$store.dispatch('mailVerified')
+      await this.$store.dispatch('addVerifiedCustomer')
+    },
+    exitHandler(){
+      localStorage.clear();
+      console.log('successfully exit session')
+      this.$router.push("/register")
+    },
     async fetchRegistrationDetails() {
       await this.$store.dispatch("fetchRegistrationDetails");
       console.log("ini fetch registration");
@@ -564,8 +609,16 @@ export default {
       const suffix = suffixes[ordinalRules.select(number)];
       return number + suffix;
     },
-    driverLicenseHandler() {
-      this.$router.push("/driverlicence");
+    driverLicenseHandler(id) {
+      console.log(id, "INI METHOD DRIVERLICENCE DI HOME")
+      
+      this.$router.push({
+        // name: "DriverLicence",
+        // params: {
+        //   id: id
+        // }
+        path: `/driverlicence/${id}`
+      });
     },
     aecHandler() {
       this.$router.push("/aec");
@@ -602,7 +655,7 @@ export default {
       );
     },
     sourceList() {
-      console.log(this.$store.state.sourceList);
+      console.log(this.$store.state.sourceList.actregodvs, "SOURCE LIST HOME");
       return this.$store.state.sourceList;
     },
   },

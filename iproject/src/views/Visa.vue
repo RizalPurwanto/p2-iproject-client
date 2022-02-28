@@ -385,6 +385,7 @@ export default {
      
       console.log(body, "INI BODY FORM ");
     this.$store.dispatch("postVisa", body);
+    this.$router.push("/")
     //   this.$router.push("/");
     },
     async fetchRegistrationDetails() {

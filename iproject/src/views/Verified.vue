@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3 class="text-center">Illion Credit Header</h3>
+    <h3 class="text-center">Congratulations You Have been Verified</h3>
     <br />
     <div class="border p-2 text-align text-center bg-white">
       <p>
@@ -52,7 +52,7 @@
 
 <script>
 export default {
-  name: "Dnb",
+  name: "Verified",
   methods: {
     backHandler() {
       this.$router.push("/");

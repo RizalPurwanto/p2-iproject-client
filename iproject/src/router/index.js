@@ -6,6 +6,7 @@ import Dnb from "../views/Dnb"
 import DriverLicence from "../views/DriverLicence"
 import Aec from "../views/Aec"
 import Visa from "../views/Visa"
+import Verified from "../views/Verified"
 Vue.use(VueRouter);
 
 const routes = [
@@ -20,7 +21,7 @@ const routes = [
     component: Register,
   },
   {
-    path: "/driverlicence",
+    path: "/driverlicence/:id",
     name: "DriverLicence",
     component: DriverLicence,
   },
@@ -38,6 +39,11 @@ const routes = [
     path: "/visa",
     name: "Visa",
     component: Visa,
+  },
+  {
+    path: "/verified",
+    name: "Verified",
+    component: Verified,
   },
   {
     path: "/about",
