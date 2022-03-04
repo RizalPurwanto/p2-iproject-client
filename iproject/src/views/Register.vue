@@ -235,7 +235,7 @@ export default {
       console.log(payload, " INI INPUT Register");
 
       axios
-        .post(`https://iprojectgreenid.herokuapp.com`, payload)
+        .post(`https://iprojectgreenid.herokuapp.com/register`, payload)
         .then((resp) => {
           console.log(resp.data, "INI HASIL LOGIN");
           this.$store.commit("setRegistrationDetails", resp);

@@ -15,7 +15,8 @@ export default new Vuex.Store({
     registrationDetails: {},
     fieldData: '',
     sourceList: {},
-    driverLicence: ''
+    driverLicence: '',
+    individualResult:{}
 
 
   },
@@ -37,6 +38,7 @@ export default new Vuex.Store({
     setSourceList(state, sourceList) {
       state.sourceList = Object.assign({}, ...sourceList.data.sources)
       console.log(sourceList.data.sources, "INI SOURCE LIST STATE AWAL")
+      state.individualResult = sourceList.data.individualResult
       console.log(state.sourceList, "INI SOURCE LIST STATE")
     },
     setRegister(state, boolean) {

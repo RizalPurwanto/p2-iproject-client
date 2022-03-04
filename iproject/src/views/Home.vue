@@ -517,8 +517,186 @@
     </button>
 
     <br />
-    
-
+    {{individualResult['GDC Asic Person Name']}}
+    <button
+     
+      v-if="individualResult['GDC Asic Person Name'] == 'VERIFIED'"
+      type=""
+      class="btn btn-success mb-2"
+      style="display: inline-block; width: 100%"
+    >
+      <svg
+        
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-check"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+        /></svg
+      >GDC Asic Person Name
+    </button>
+    <br>
+    <button
+     
+      v-if="individualResult['GDC Tenancy File'] == 'VERIFIED'"
+      type=""
+      class="btn btn-success mb-2"
+      style="display: inline-block; width: 100%"
+    >
+      <svg
+        
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-check"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+        /></svg
+      >GDC Tenancy File
+    </button>
+    <br>
+    <button
+     
+      v-if="individualResult['PND'] == 'VERIFIED'"
+      type=""
+      class="btn btn-success mb-2"
+      style="display: inline-block; width: 100%"
+    >
+      <svg
+        
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-check"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+        /></svg
+      >PND
+    </button>
+    <br>
+    <button
+     
+      v-if="individualResult['ACD'] == 'VERIFIED'"
+      type=""
+      class="btn btn-success mb-2"
+      style="display: inline-block; width: 100%"
+    >
+      <svg
+        
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-check"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+        /></svg
+      >ACD
+    </button>
+    <br>
+    <button
+     
+      v-if="individualResult['Aec'] == 'VERIFIED'"
+      type=""
+      class="btn btn-success mb-2"
+      style="display: inline-block; width: 100%"
+    >
+      <svg
+        
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-check"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
+        /></svg
+      >Aec
+    </button>
+    <br>
+    <button
+      
+      v-if="individualResult['ExtendedPEPWatchlist'] = 'FOUND_ON_LIST'"
+      type=""
+      class="btn btn-danger mb-2"
+      style="display: inline-block; width: 100%"
+    >
+      <svg
+        
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-x"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+      Found on ExtendedPEPWatchlist
+    </button>
+    <br>
+    <button
+      
+      v-if="individualResult['OFAC Watchlist'] = 'FOUND_ON_LIST'"
+      type=""
+      class="btn btn-danger mb-2"
+      style="display: inline-block; width: 100%"
+    >
+      <svg
+        
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-x"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+      Found on OFAC Watchlist
+    </button>
+    <br>
+    <button
+      
+      v-if="individualResult['PEP Watchlist'] = 'FOUND_ON_LIST'"
+      type=""
+      class="btn btn-danger mb-2"
+      style="display: inline-block; width: 100%"
+    >
+      <svg
+        
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-x"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+      Found on PEP Watchlist
+    </button>
+    <br>
     <button
       v-if="this.registerDetails.overallVerificationStatus === 'VERIFIED' || this.registerDetails.overallVerificationStatus ==='VERIFIED_WITH_CHANGES'"
       type="button"
@@ -576,6 +754,8 @@ export default {
     async nextHandler() {
       await this.$store.dispatch('mailVerified')
       await this.$store.dispatch('addVerifiedCustomer')
+      localStorage.clear();
+      this.$router.push("/register")
     },
     exitHandler(){
       localStorage.clear();
@@ -657,6 +837,10 @@ export default {
     sourceList() {
       console.log(this.$store.state.sourceList.actregodvs, "SOURCE LIST HOME");
       return this.$store.state.sourceList;
+    },
+    individualResult() {
+      console.log(this.$store.state.individualResult, " INDIVIDUAL RESULT HOME");
+      return this.$store.state.individualResult;
     },
   },
 };
