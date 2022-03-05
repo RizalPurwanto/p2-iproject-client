@@ -517,12 +517,12 @@
     </button>
 
     <br />
-    {{individualResult['GDC Asic Person Name']}}
+    
     <button
      
       v-if="individualResult['GDC Asic Person Name'] == 'VERIFIED'"
       type=""
-      class="btn btn-success mb-2"
+      class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
@@ -544,7 +544,7 @@
      
       v-if="individualResult['GDC Tenancy File'] == 'VERIFIED'"
       type=""
-      class="btn btn-success mb-2"
+      class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
@@ -566,7 +566,7 @@
      
       v-if="individualResult['PND'] == 'VERIFIED'"
       type=""
-      class="btn btn-success mb-2"
+      class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
@@ -588,7 +588,7 @@
      
       v-if="individualResult['ACD'] == 'VERIFIED'"
       type=""
-      class="btn btn-success mb-2"
+      class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
@@ -610,7 +610,7 @@
      
       v-if="individualResult['Aec'] == 'VERIFIED'"
       type=""
-      class="btn btn-success mb-2"
+      class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
@@ -630,7 +630,7 @@
     <br>
     <button
       
-      v-if="individualResult['ExtendedPEPWatchlist'] = 'FOUND_ON_LIST'"
+      v-if="individualResult['ExtendedPEPWatchlist'] == 'FOUND_ON_LIST'"
       type=""
       class="btn btn-danger mb-2"
       style="display: inline-block; width: 100%"
@@ -653,7 +653,7 @@
     <br>
     <button
       
-      v-if="individualResult['OFAC Watchlist'] = 'FOUND_ON_LIST'"
+      v-if="individualResult['OFAC Watchlist'] == 'FOUND_ON_LIST'"
       type=""
       class="btn btn-danger mb-2"
       style="display: inline-block; width: 100%"
@@ -676,7 +676,7 @@
     <br>
     <button
       
-      v-if="individualResult['PEP Watchlist'] = 'FOUND_ON_LIST'"
+      v-if="individualResult['PEP Watchlist'] == 'FOUND_ON_LIST'"
       type=""
       class="btn btn-danger mb-2"
       style="display: inline-block; width: 100%"

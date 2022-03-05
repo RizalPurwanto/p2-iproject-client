@@ -206,7 +206,7 @@ export default new Vuex.Store({
           }
         }) 
         console.log(resp, "INI  RESP ADD CUSTOMER")
-        
+        Swal.fire('Congratulations! You have been verified!! We will email you the results of your verification')
       } catch (err) {
         console.log(err);
       }
