@@ -183,8 +183,10 @@ export default new Vuex.Store({
         
         const body = this.state.registrationDetails
         console.log(body, "INI BODY MAIL")
-        let resp = await axios.post(`${baseURL}/verify/mail`, body) 
+        let resp = await axios.post(`${baseURL}/verify/mail`, body)
+        let respMailgun = await axios.post (`${baseURL}/verify/mailgun`, body)
         console.log(resp.data, "INI  RESP Mail")
+        console.log(respMailgun.data, "INI  RESP Mail GUN")
         
       } catch (err) {
         console.log(err);
