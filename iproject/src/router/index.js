@@ -7,6 +7,7 @@ import DriverLicence from "../views/DriverLicence"
 import Aec from "../views/Aec"
 import Visa from "../views/Visa"
 import Verified from "../views/Verified"
+import CustomerService from "../views/CustomerService"
 Vue.use(VueRouter);
 
 const routes = [
@@ -44,6 +45,11 @@ const routes = [
     path: "/verified",
     name: "Verified",
     component: Verified,
+  },
+  {
+    path: "/customerservice",
+    name: "CustomerService",
+    component: CustomerService,
   },
   {
     path: "/about",

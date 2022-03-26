@@ -712,6 +712,13 @@
       >
         Exit
       </button>
+      <button
+        type="button"
+        class="btn btn-warning float-left mb-2"
+        @click.prevent="customerServiceHandler"
+      >
+        Customer Service
+      </button>
   </div>
 </template>
 
@@ -751,6 +758,10 @@ export default {
   // },
 
   methods: {
+    async customerServiceHandler() {
+      console.log("CS BUTTON CLICKED")
+      this.$router.push("/customerservice")
+    },
     async nextHandler() {
       await this.$store.dispatch('mailVerified')
       await this.$store.dispatch('addVerifiedCustomer')
