@@ -1,8 +1,12 @@
 <template>
-  <div class="container">
-    <h3 class="text-center">Please Register to Verify Your Id</h3>
+  <div class="container mt-10">
+    <h3 class="text-center mt-4">Please Register to Verify Your Id</h3>
 
-    <form-wizard @on-complete="registerHandler">
+    <form-wizard @on-complete="registerHandler" 
+     color="#1F9048"
+     title="Complete these Steps to Register"
+     subtitle=""
+     >
       <tab-content title="Personal Details">
         <div class="row">
           <div class="col">

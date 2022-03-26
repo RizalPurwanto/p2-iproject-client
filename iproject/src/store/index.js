@@ -192,6 +192,27 @@ export default new Vuex.Store({
         console.log(err);
       }
     },
+
+    async mailUnverified() {
+      try {
+        console.log(this.state.registrationDetails, "INI PAYLOAD MAIL")
+        
+        const body = {
+          registrationDetails : this.state.registrationDetails,
+          sourceList: this.state.sourceList,
+          individualResult: this.state.individualResult
+          
+        }
+        console.log(body, "INI BODY MAIL")
+        let resp = await axios.post(`${baseURL}/verify/mail/unverified`, body)
+        let respMailgun = await axios.post (`${baseURL}/verify/mailgun`, body)
+        console.log(resp.data, "INI  RESP Mail")
+        console.log(respMailgun.data, "INI  RESP Mail GUN")
+        
+      } catch (err) {
+        console.log(err);
+      }
+    },
     async addVerifiedCustomer() {
       try {
         

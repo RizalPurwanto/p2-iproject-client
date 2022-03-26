@@ -1,7 +1,7 @@
 <template>
 <div>
-<Header></Header>
-  <div id="app">
+<Header class=""></Header>
+  <div class="mt-10" id="app">
    
     <router-view></router-view >
     
@@ -48,11 +48,11 @@ body{
   }
   .header{
     width:103%;
-    height:18%;
+    height:15%;
     left:-1%;
     margin-top: -10%;
     position:absolute;
-    background-color: #164100;
+    background-color: #1F9048;
     border-top-left-radius:10px;
     border-top-right-radius:10px;
     border-bottom-left-radius: 50% 20%;
@@ -61,7 +61,7 @@ body{
   }
   .headerInside {
     width:103%;
-    height:20%;
+    height:18%;
     left:-1%;
     margin-top: -10%;
     margin-bottom: 5%;

@@ -6,37 +6,66 @@
         <li>
           <b>Nama</b>:
 
-          {{ this.registerDetails.registrationDetails.name.givenName._text || ''}}
-          {{ this.registerDetails.registrationDetails.name.surname._text || ''}}
+          {{
+            this.registerDetails.registrationDetails.name.givenName._text || ""
+          }}
+          {{
+            this.registerDetails.registrationDetails.name.surname._text || ""
+          }}
         </li>
         <li>
           <b>Address</b>:
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetName || ' ' }}
-          {{ this.registerDetails.registrationDetails.currentResidentialAddress.streetType || ' ' }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.streetNumber || ' ' }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.suburb || ' ' }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.state || ' ' }}
-          {{this.registerDetails.registrationDetails.currentResidentialAddress.country || ' ' }}
+          {{
+            this.registerDetails.registrationDetails.currentResidentialAddress
+              .streetName || " "
+          }}
+          {{
+            this.registerDetails.registrationDetails.currentResidentialAddress
+              .streetType || " "
+          }}
+          {{
+            this.registerDetails.registrationDetails.currentResidentialAddress
+              .streetNumber || " "
+          }}
+          {{
+            this.registerDetails.registrationDetails.currentResidentialAddress
+              .suburb || " "
+          }}
+          {{
+            this.registerDetails.registrationDetails.currentResidentialAddress
+              .state || " "
+          }}
+          {{
+            this.registerDetails.registrationDetails.currentResidentialAddress
+              .country || " "
+          }}
         </li>
         <li>
           <b>Date of Birth</b>:
-          {{ ordinal(this.registerDetails.registrationDetails.dob.day._text ) || '' }}
+          {{
+            ordinal(this.registerDetails.registrationDetails.dob.day._text) ||
+            ""
+          }}
           {{
             getMonthName(
               this.registerDetails.registrationDetails.dob.month._text
-            ) || ''
+            ) || ""
           }}
-          {{this.registerDetails.registrationDetails.dob.year._text || '' }}
+          {{ this.registerDetails.registrationDetails.dob.year._text || "" }}
         </li>
         <li>
           <b>Email address</b>:
-          {{ this.registerDetails.registrationDetails.email._text || ''}}
+          {{ this.registerDetails.registrationDetails.email._text || "" }}
         </li>
       </ul>
     </div>
     <p></p>
     <div
-    v-if="this.registerDetails.overallVerificationStatus !== 'VERIFIED' && this.registerDetails.overallVerificationStatus !== 'VERIFIED_WITH_CHANGES'"
+      v-if="
+        this.registerDetails.overallVerificationStatus !== 'VERIFIED' &&
+        this.registerDetails.overallVerificationStatus !==
+          'VERIFIED_WITH_CHANGES'
+      "
       class="
         text-center
         mb-2
@@ -50,10 +79,13 @@
     >
       <p class="mt-3 mb-0">You are not verified yet</p>
       <p class="">Verify yourself by filling in data sources below</p>
-     
     </div>
     <div
-    v-if="this.registerDetails.overallVerificationStatus !== 'VERIFIED' && this.registerDetails.overallVerificationStatus !== 'VERIFIED_WITH_CHANGES'"
+      v-if="
+        this.registerDetails.overallVerificationStatus !== 'VERIFIED' &&
+        this.registerDetails.overallVerificationStatus !==
+          'VERIFIED_WITH_CHANGES'
+      "
       class="
         text-center
         mb-2
@@ -73,7 +105,11 @@
       </strong>
     </div>
     <div
-      v-if="this.registerDetails.overallVerificationStatus == 'VERIFIED' || this.registerDetails.overallVerificationStatus =='VERIFIED_WITH_CHANGES'"
+      v-if="
+        this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+      "
       class="
         text-center
         mb-2
@@ -89,13 +125,10 @@
 
       <p class="mt-3 mb-0">Congratulations!</p>
       <p class="mb-0">You are verified</p>
-      <p>
-        Click Next to finish the process
-        
-      </p>
+      <p>Click Next to finish the process</p>
     </div>
     <p>Verification Progress</p>
-     <p>{{this.registerDetails.overallVerificationStatus}}</p>
+    <p>{{this.registerDetails.overallVerificationStatus}}</p>
     <div
       class="progress mb-2 bg-light border border-dark"
       style="width: 50%; height: 30px"
@@ -116,7 +149,7 @@
       <br />
       <br />
     </div>
-    
+
     <button
       v-bind:class="[
         this.sourceList.nswregodvs === 'VERIFIED'
@@ -133,7 +166,7 @@
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
-    <p v-if="this.sourceList.nswregodvs === 'PENDING'">PENDING</p>
+      <p v-if="this.sourceList.nswregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="this.sourceList.nswregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -166,20 +199,19 @@
       v-bind:class="[
         sourceList.vicregodvs === 'VERIFIED'
           ? 'btn-success disabled'
-           : sourceList.vicregodvs === 'PENDING'
+          : sourceList.vicregodvs === 'PENDING'
           ? 'btn-warning disabled'
           : sourceList.vicregodvs === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
       ]"
-      
       @click="driverLicenseHandler('vicregodvs')"
       type="button"
       data-toggle="tooltip"
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
-    <p v-if="this.sourceList.vicregodvs === 'PENDING'">PENDING</p>
+      <p v-if="this.sourceList.vicregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.vicregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -212,7 +244,7 @@
       v-bind:class="[
         sourceList.qldregodvs === 'VERIFIED'
           ? 'btn-success disabled'
-           :sourceList.qldregodvs === 'PENDING'
+          : sourceList.qldregodvs === 'PENDING'
           ? 'btn-warning'
           : sourceList.qldregodvs === 'FAILED'
           ? 'btn-danger'
@@ -223,7 +255,7 @@
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
-    <p v-if="this.sourceList.qldregodvs === 'PENDING'">PENDING</p>
+      <p v-if="this.sourceList.qldregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.qldregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +288,7 @@
       v-bind:class="[
         sourceList.saregodvs === 'VERIFIED'
           ? 'btn-success disabled'
-           : sourceList.saregodvs === 'PENDING'
+          : sourceList.saregodvs === 'PENDING'
           ? 'btn-warning disabled'
           : sourceList.saregodvs === 'FAILED'
           ? 'btn-danger'
@@ -267,7 +299,7 @@
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
-    <p v-if="this.sourceList.saregodvs === 'PENDING'">PENDING</p>
+      <p v-if="this.sourceList.saregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.saregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -300,7 +332,7 @@
       v-bind:class="[
         sourceList.waregodvs === 'VERIFIED'
           ? 'btn-success disabled'
-           : sourceList.saregodvs === 'PENDING'
+          : sourceList.saregodvs === 'PENDING'
           ? 'btn-warning disabled'
           : sourceList.waregodvs === 'FAILED'
           ? 'btn-danger'
@@ -311,7 +343,7 @@
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
-    <p v-if="this.sourceList.waregodvs === 'PENDING'">PENDING</p>
+      <p v-if="this.sourceList.waregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.waregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -345,18 +377,17 @@
       v-bind:class="[
         sourceList.actregodvs === 'VERIFIED'
           ? 'btn-success disabled'
-           : this.sourceList.actregodvs === 'PENDING'
+          : this.sourceList.actregodvs === 'PENDING'
           ? 'btn-warning disabled'
           : sourceList.actregodvs === 'FAILED'
           ? 'btn-danger'
           : 'btn-secondary',
       ]"
-      
       type=""
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
     >
-    <p v-if="this.sourceList.actregodvs === 'PENDING'">PENDING</p>
+      <p v-if="this.sourceList.actregodvs === 'PENDING'">PENDING</p>
       <svg
         v-if="sourceList.actregodvs === 'FAILED'"
         xmlns="http://www.w3.org/2000/svg"
@@ -382,21 +413,20 @@
         <path
           d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"
         /></svg
-      >Australian Capital Territory Driver's Licence - DVS (name, date of birth) 
+      >Australian Capital Territory Driver's Licence - DVS (name, date of birth)
     </button>
 
     <button
       @click="visaHandler"
       v-bind:class="[
         sourceList.visa === 'VERIFIED'
-          ? 'btn-success disabled'   
-           : sourceList.visa === 'PENDING'
+          ? 'btn-success disabled'
+          : sourceList.visa === 'PENDING'
           ? 'btn-warning disabled'
           : sourceList.visa === 'FAILED'
           ? 'btn-danger disabled'
           : 'btn-secondary',
       ]"
-     
       type=""
       class="btn btn-secondary mb-2"
       style="display: inline-block; width: 100%"
@@ -432,10 +462,10 @@
     <button
       @click="aecHandler"
       v-bind:class="[
-        sourceList.aec === 'VERIFIED' ||  sourceList.aec === 'VERIFIED_WITH_CHANGES'
+        sourceList.aec === 'VERIFIED' ||
+        sourceList.aec === 'VERIFIED_WITH_CHANGES'
           ? 'btn-success disabled'
-          
-           : sourceList.aec === 'PENDING'
+          : sourceList.aec === 'PENDING'
           ? 'btn-warning disabled'
           : sourceList.aec === 'FAILED'
           ? 'btn-danger'
@@ -478,7 +508,7 @@
       v-bind:class="[
         sourceList.dnb === 'VERIFIED'
           ? 'btn-success disabled'
-           : sourceList.dnb === 'PENDING'
+          : sourceList.dnb === 'PENDING'
           ? 'btn-warning disabled'
           : sourceList.dnb === 'FAILED'
           ? 'btn-danger'
@@ -517,16 +547,14 @@
     </button>
 
     <br />
-    
+
     <button
-     
       v-if="individualResult['GDC Asic Person Name'] == 'VERIFIED'"
       type=""
       class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
-        
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -539,16 +567,14 @@
         /></svg
       >GDC Asic Person Name
     </button>
-    <br>
+    <br />
     <button
-     
       v-if="individualResult['GDC Tenancy File'] == 'VERIFIED'"
       type=""
       class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
-        
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -561,16 +587,14 @@
         /></svg
       >GDC Tenancy File
     </button>
-    <br>
+    <br />
     <button
-     
       v-if="individualResult['PND'] == 'VERIFIED'"
       type=""
       class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
-        
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -583,16 +607,14 @@
         /></svg
       >PND
     </button>
-    <br>
+    <br />
     <button
-     
       v-if="individualResult['ACD'] == 'VERIFIED'"
       type=""
       class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
-        
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -605,16 +627,14 @@
         /></svg
       >ACD
     </button>
-    <br>
+    <br />
     <button
-     
       v-if="individualResult['Aec'] == 'VERIFIED'"
       type=""
       class="btn btn-success disabled mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
-        
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -627,16 +647,14 @@
         /></svg
       >Aec
     </button>
-    <br>
+    <br />
     <button
-      
       v-if="individualResult['ExtendedPEPWatchlist'] == 'FOUND_ON_LIST'"
       type=""
       class="btn btn-danger mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
-        
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -650,16 +668,14 @@
       </svg>
       Found on ExtendedPEPWatchlist
     </button>
-    <br>
+    <br />
     <button
-      
       v-if="individualResult['OFAC Watchlist'] == 'FOUND_ON_LIST'"
       type=""
       class="btn btn-danger mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
-        
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -673,16 +689,14 @@
       </svg>
       Found on OFAC Watchlist
     </button>
-    <br>
+    <br />
     <button
-      
       v-if="individualResult['PEP Watchlist'] == 'FOUND_ON_LIST'"
       type=""
       class="btn btn-danger mb-2"
       style="display: inline-block; width: 100%"
     >
       <svg
-        
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -696,9 +710,9 @@
       </svg>
       Found on PEP Watchlist
     </button>
-    <br>
+    <br />
     <button
-      v-if="this.registerDetails.overallVerificationStatus === 'VERIFIED' || this.registerDetails.overallVerificationStatus ==='VERIFIED_WITH_CHANGES'"
+      
       type="button"
       class="btn btn-success float-right mb-2"
       @click.prevent="nextHandler"
@@ -706,19 +720,19 @@
       Next
     </button>
     <button
-        type="button"
-        class="btn btn-danger float-left mb-2"
-        @click.prevent="exitHandler"
-      >
-        Exit
-      </button>
-      <button
-        type="button"
-        class="btn btn-warning float-left mb-2"
-        @click.prevent="customerServiceHandler"
-      >
-        Customer Service
-      </button>
+      type="button"
+      class="btn btn-danger float-left mb-2"
+      @click.prevent="exitHandler"
+    >
+      Exit
+    </button>
+    <button
+      type="button"
+      class="btn btn-warning float-left mb-2"
+      @click.prevent="customerServiceHandler"
+    >
+      Customer Service
+    </button>
   </div>
 </template>
 
@@ -759,19 +773,28 @@ export default {
 
   methods: {
     async customerServiceHandler() {
-      console.log("CS BUTTON CLICKED")
-      this.$router.push("/customerservice")
+      console.log("CS BUTTON CLICKED");
+      this.$router.push("/customerservice");
     },
     async nextHandler() {
-      await this.$store.dispatch('mailVerified')
-      await this.$store.dispatch('addVerifiedCustomer')
+      if (
+        this.registerDetails.overallVerificationStatus == "VERIFIED" ||
+        this.registerDetails.overallVerificationStatus ==
+          "VERIFIED_WITH_CHANGES"
+      ) {
+        await this.$store.dispatch("mailVerified");
+        await this.$store.dispatch("addVerifiedCustomer");
+      } else {
+        await this.$store.dispatch("mailUnverified");
+      }
+
       localStorage.clear();
-      this.$router.push("/register")
+      this.$router.push("/register");
     },
-    exitHandler(){
+    exitHandler() {
       localStorage.clear();
-      console.log('successfully exit session')
-      this.$router.push("/register")
+      console.log("successfully exit session");
+      this.$router.push("/register");
     },
     async fetchRegistrationDetails() {
       await this.$store.dispatch("fetchRegistrationDetails");
@@ -801,14 +824,14 @@ export default {
       return number + suffix;
     },
     driverLicenseHandler(id) {
-      console.log(id, "INI METHOD DRIVERLICENCE DI HOME")
-      
+      console.log(id, "INI METHOD DRIVERLICENCE DI HOME");
+
       this.$router.push({
         // name: "DriverLicence",
         // params: {
         //   id: id
         // }
-        path: `/driverlicence/${id}`
+        path: `/driverlicence/${id}`,
       });
     },
     aecHandler() {
@@ -833,14 +856,22 @@ export default {
       return this.$store.state.registrationDetails;
     },
     percentage() {
-      console.log("INI RATIO",  (Math.floor((this.$store.state.registrationDetails.fullNameCount +
-          this.$store.state.registrationDetails.fullAddressCount +
-          this.$store.state.registrationDetails.dobCount)/5)*5) /
-          5)
+      console.log(
+        "INI RATIO",
+        (Math.floor(
+          (this.$store.state.registrationDetails.fullNameCount +
+            this.$store.state.registrationDetails.fullAddressCount +
+            this.$store.state.registrationDetails.dobCount) /
+            5
+        ) *
+          5) /
+          5
+      );
       return (
-        (((2-this.$store.state.registrationDetails.fullNameRequired) +
-          (2-this.$store.state.registrationDetails.fullAddressRequired) +
-          (1-this.$store.state.registrationDetails.dobRequired)) /
+        ((2 -
+          this.$store.state.registrationDetails.fullNameRequired +
+          (2 - this.$store.state.registrationDetails.fullAddressRequired) +
+          (1 - this.$store.state.registrationDetails.dobRequired)) /
           5) *
         100
       );
@@ -850,7 +881,10 @@ export default {
       return this.$store.state.sourceList;
     },
     individualResult() {
-      console.log(this.$store.state.individualResult, " INDIVIDUAL RESULT HOME");
+      console.log(
+        this.$store.state.individualResult,
+        " INDIVIDUAL RESULT HOME"
+      );
       return this.$store.state.individualResult;
     },
   },

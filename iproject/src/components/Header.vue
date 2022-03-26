@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
       <div class="headerInside"></div>
   <div class="header"></div>
   </div>
