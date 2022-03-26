@@ -15,12 +15,15 @@
 </template>
 
 <script>
+
+
 import Header from "../src/components/Header.vue"
 import Footer from "../src/components/Footer.vue"
 //import HFooter from 'vue-hacktiv8-footer'
 export default {
   name: "App",
   components: {
+    
     Header,
     Footer,
    // HFooter
