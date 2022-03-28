@@ -124,7 +124,11 @@
           <div class="col h-25">
             <label for="streetNumber">Street Type</label>
             <br />
-            <select
+            <input type="text" name="streetType" id="streetType" v-model="streetType"
+              
+              aria-required="false"
+              class=" form-control overflow-auto"   >
+            <!-- <select
               name="streetType"
               v-model="streetType"
               id=""
@@ -153,7 +157,7 @@
               <option value="TCE">Terrace</option>
               <option value="WAY">Way</option>
               <option value="">Other</option>
-            </select>
+            </select> -->
           </div>
         </div>
         <br />
@@ -174,7 +178,8 @@
         <div class="form-group">
           <label for="state">State</label>
           <br />
-          <select name="state" id="" v-model="state" aria-required="true" class="form-select overflow-auto h-25" aria-label="Default select example">
+          <input type="text" name="state" id="state" v-model="state" class="form-control">
+          <!-- <select name="state" id="" v-model="state" aria-required="true" class="form-select overflow-auto h-25" aria-label="Default select example">
             <option value="" selected="selected" disabled>
               Please select State
             </option>
@@ -186,18 +191,18 @@
             <option value="TAS">Tasmania</option>
             <option value="ACT">Australian Capital Territory</option>
             <option value="NT">Northern Territory</option>
-          </select>
+          </select> -->
         </div>
         <br />
         <div class="form-group">
           <label for="postcode">Postcode</label>
           <input
-            v-model="postcode"
+            :v-model="postcode"
             type="number"
             class="form-control"
-            id="suburb"
-            name="suburb"
-            aria-required="true"
+            id="postcode"
+            name="postcode"
+            
           />
         </div>
       </tab-content>
@@ -220,6 +225,8 @@ import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import addressFinder from '../utils/addressfinder';
+import bus from '../utils/eventbus';
 export default {
   name: "Register",
   data() {
@@ -236,15 +243,26 @@ export default {
       suburb: "",
       state: "",
       postcode: "",
+      ready: false,
     };
+  },
+  mounted() {
+    bus.$on('afloaded', this.init);
+    console.log(addressFinder.ready, this.init)
+    // console.log()
+    if (addressFinder.ready) {
+      
+      this.init();
+    }
   },
   components: {
     FormWizard,
     TabContent,
   },
   methods: {
-    registerHandler() {
+    registerHandler(submitEvent) {
       //  this.$refs.form.$el.submit()
+      console.log(submitEvent, "INI SUBMITENEVT")
       let payload = {
         givenName: this.givenName,
         middleNames: this.middleNames,
@@ -252,13 +270,13 @@ export default {
         dob: this.dob.replace(/-/g, "/"),
         email: this.email,
         flatNumber: this.flatNumber,
-        streetNumber: this.streetNumber,
-        streetName: this.streetName,
+        streetNumber: document.getElementById("streetNumber").value,
+        streetName: document.getElementById("streetName").value,
 
-        streetType: this.streetType,
-        suburb: this.suburb,
-        state: this.state,
-        postcode: this.postcode,
+        streetType: document.getElementById("streetType").value,
+        suburb: document.getElementById("suburb").value,
+        state: document.getElementById("state").value,
+        postcode: document.getElementById("postcode").value,
       };
       console.log(payload, " INI INPUT Register");
 
@@ -275,6 +293,63 @@ export default {
           console.log(err, " INI ERROR");
           Swal.fire(err.message);
           //Vue.$toast.error(error.response.data.message);
+        });
+    },
+     init() {
+       console.log(addressFinder.ready, "INITIATED")
+      if (this.ready) {
+        return;
+      }
+      this.ready = true;
+ 
+      /* eslint-disable no-new */
+      
+      let widget = new window.AddressFinder.Widget(
+        document.getElementById('streetName'),
+        'ADDRESSFINDER_DEMO_KEY',
+        'AU',
+        {
+                "address_params": {
+                    "gnaf": "1"
+                },
+                "show_locations": true,
+                "location_params": {
+                    "location_types": "street "
+                },
+                "empty_content": "No addresses were found. This could be a new address, or you may need to check the spelling. Learn more"
+            });
+
+                widget.on('address:select', function(fullAddress, metaData) {
+            document.getElementById('streetNumber').value = metaData.street_number_1
+
+        });
+
+        
+
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('streetName').value = metaData.street_name
+
+        });
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('streetType').value = metaData.street_type
+
+        });
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('suburb').value = metaData.locality_name
+
+        });
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('state').value = metaData.state_territory
+
+        });
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('postcode').value = metaData.postcode
+
         });
     },
   },

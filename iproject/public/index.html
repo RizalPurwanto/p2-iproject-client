@@ -24,11 +24,11 @@
 
 
   
-  <script>
+  <!-- <script>
     (function() {
     var widget, initAddressFinder = function() {
         widget = new AddressFinder.Widget(
-            document.getElementById('streetNumber'),
+            document.getElementById('streetName'),
             'ADDRESSFINDER_DEMO_KEY',
             'AU', {
                 "address_params": {
@@ -36,20 +36,47 @@
                 },
                 "show_locations": true,
                 "location_params": {
-                    "location_types": "street"
+                    "location_types": "street "
                 },
                 "empty_content": "No addresses were found. This could be a new address, or you may need to check the spelling. Learn more"
             }
         );
 
+
+        // widget.on('address:select', function(fullAddress, metaData) {
+        //     document.getElementById('flatNumber').value = metaData.street_number_1
+
+        // });
         widget.on('address:select', function(fullAddress, metaData) {
-            document.getElementById('streetNumber').value = metaData.full_address
+            document.getElementById('streetNumber').value = metaData.street_number_1
 
         });
 
+        
+
 
         widget.on('location:select', function(fullLocation, metaData) {
-            document.getElementById('streetNumber').value = metaData.full_location
+            document.getElementById('streetName').value = metaData.street_name
+
+        });
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('streetType').value = metaData.street_type
+
+        });
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('suburb').value = metaData.locality_name
+
+        });
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('state').value = metaData.state_territory
+
+        });
+
+        widget.on('location:select', function(fullLocation, metaData) {
+            document.getElementById('postcode').value = metaData.postcode
 
         });
 
@@ -65,7 +92,7 @@
 
     document.addEventListener('DOMContentLoaded', downloadAddressFinder);
 })();
-  </script>
+  </script> -->
 </body>
 
 </html>
