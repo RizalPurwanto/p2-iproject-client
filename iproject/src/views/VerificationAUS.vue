@@ -128,7 +128,7 @@
       <p>Click Next to finish the process</p>
     </div>
     <p>Verification Progress</p>
-    <p>{{this.registerDetails.overallVerificationStatus}}</p>
+    <!-- <p>{{this.registerDetails.overallVerificationStatus}}</p> -->
     <div
       class="progress mb-2 bg-light border border-dark"
       style="width: 50%; height: 30px"
@@ -714,25 +714,25 @@
     <button
       
       type="button"
-      class="btn btn-success float-right mb-2"
+      class="btn btn-lg mb-10 btn-success float-end mb-2"
       @click.prevent="nextHandler"
     >
       Next
     </button>
-    <button
+    <!-- <button
       type="button"
       class="btn btn-danger float-left mb-2"
       @click.prevent="exitHandler"
     >
       Exit
-    </button>
-    <button
+    </button> -->
+    <!-- <button
       type="button"
       class="btn btn-warning float-left mb-2"
       @click.prevent="customerServiceHandler"
     >
       Customer Service
-    </button>
+    </button> -->
   </div>
 </template>
 

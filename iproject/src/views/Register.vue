@@ -142,7 +142,7 @@
             />
           </div>
         </div>
-        <div class=" row">
+        <div class="d-none row">
           <div class="col">
             <label for="flatNumber">Flat Number</label>
             <input
