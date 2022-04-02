@@ -8,6 +8,8 @@ import Aec from "../views/Aec"
 import Visa from "../views/Visa"
 import Verified from "../views/Verified"
 import CustomerService from "../views/CustomerService"
+import VerificationAUS from "../views/VerificationAUS"
+import RegisterINA from "../views/RegisterINA"
 Vue.use(VueRouter);
 
 const routes = [
@@ -17,9 +19,19 @@ const routes = [
     component: Home,
   },
   {
+    path: "/verification-au",
+    name: "VerificationAUS",
+    component: VerificationAUS,
+  },
+  {
     path: "/register",
     name: "Register",
     component: Register,
+  },
+  {
+    path: "/register-id",
+    name: "RegisterINA",
+    component: RegisterINA,
   },
   {
     path: "/driverlicence/:id",
@@ -70,10 +82,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next)=>{
   
-  if(to.name == "Register" && localStorage.verificationId) {
+  if((to.name == "Home" || to.name == "Register" || to.name == "RegisterINA") && localStorage.verificationId) {
+    next("/verification-au")
+  }  else if ((to.name !== "Home" && to.name !== "Register" && to.name !== "RegisterINA") && !localStorage.verificationId && !localStorage.idIna){
     next("/")
-  } else if (to.name !== "Register" && !localStorage.verificationId){
-    next("/register")
   }  else {
     next()
   }

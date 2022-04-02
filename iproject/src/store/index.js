@@ -121,7 +121,7 @@ export default new Vuex.Store({
         .then((resp) => {
           console.log(resp, "INI DRIVER LICENCE AFTER POST")
           Swal.fire('Successfully submitted')
-          router.push("/");
+          router.push("/verification-au");
         })
         .catch((err) => {
           Swal.fire(err.response.data.error)
@@ -143,7 +143,7 @@ export default new Vuex.Store({
         .then((resp) => {
           console.log(resp, "INI AEC")
           Swal.fire('Successfully submitted')
-          router.push("/")
+          router.push("/verification-au")
 
         })
         .catch((err) => {
@@ -167,7 +167,7 @@ export default new Vuex.Store({
         headers: headers
       })
         .then((resp) => {
-          router.push("/")
+          router.push("/verification-au")
           console.log(resp, "INI DNB")
           Swal.fire('Successfully submitted')
         })
@@ -249,7 +249,7 @@ export default new Vuex.Store({
       })
         .then((resp) => {
           console.log(resp, "INI Visa")
-          router.push("/");
+          router.push("/verification-au");
         })
         .catch((err) => {
           Swal.fire(err.response.data.error)

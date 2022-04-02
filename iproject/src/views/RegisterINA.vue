@@ -76,7 +76,7 @@
             >We'll never share your email with anyone else.</small
           >
         </div>
-         <br />
+        <br />
         <div class="form-group">
           <label for="phoneNumber">Phone Number</label>
           <input
@@ -125,13 +125,12 @@
           </div>
         </div>
         <br />
-        <br />
       </tab-content>
       <tab-content title="Address Info">
         <div class="row">
           <div class="col">
             <label for="flatNumber">Address</label>
-            <input
+            <textarea
               v-model="address"
               type="text"
               class="form-control"
@@ -139,65 +138,14 @@
               name="address"
               aria-required="false"
               placeholder="Enter Address"
+              rows="3"
             />
           </div>
         </div>
-        <div class=" row">
-          <div class="col">
-            <label for="flatNumber">Flat Number</label>
-            <input
-              v-model="flatNumber"
-              type="text"
-              class="form-control"
-              id="flatNumber"
-              name="flatNumber"
-              aria-required="false"
-              placeholder="Enter Flat Number"
-            />
-          </div>
-          <div class="col">
-            <label for="streetNumber">Street Number</label>
-            <input
-              v-model="streetNumber"
-              type="text"
-              class="form-control"
-              id="streetNumber"
-              name="streetNumber"
-              aria-required="true"
-              placeholder="Enter street number"
-            />
-          </div>
-        </div>
-
-        <div class="form-group"></div>
-        <br />
-        <div class="d-none row">
-          <div class="col">
-            <label for="streetName">Street Name</label>
-            <input
-              v-model="streetName"
-              type="text"
-              class="form-control"
-              id="streetName"
-              name="streetName"
-              aria-required="true"
-              placeholder="Enter street name"
-            />
-          </div>
-          <div class="col h-25">
-            <label for="streetNumber">Street Type</label>
-            <br />
-            <input type="text" name="streetType" id="streetType" v-model="streetType"
-              
-              aria-required="false"
-              class=" form-control overflow-auto"   >
-            
-          </div>
-        </div>
-        
+        <br>
 
         <div class="form-group">
-          <label for="suburb">Suburb or Town</label>
+          <label for="suburb">City</label>
           <input
             v-model="suburb"
             type="text"
@@ -210,7 +158,7 @@
         </div>
         <br />
         <div class="form-group">
-          <label for="state">State</label>
+          <label for="state">Province</label>
           <br />
           <input type="text" name="state" id="state" v-model="state" class="form-control">
           <!-- <select name="state" id="" v-model="state" aria-required="true" class="form-select overflow-auto h-25" aria-label="Default select example">
@@ -278,9 +226,10 @@ export default {
       state: "",
       postcode: "",
       ready: false,
-      idType: "",
-      idNumber:"",
-      phoneNumber:0
+      idType:'',
+      idNumber:'',
+      phoneNumber:'',
+      
     };
   },
   mounted() {
@@ -306,7 +255,7 @@ export default {
         surname: this.surname,
         dob: this.dob.replace(/-/g, "/"),
         email: this.email,
-        flatNumber: document.getElementById("flatNumber").value,
+        flatNumber: this.flatNumber,
         streetNumber: document.getElementById("streetNumber").value,
         streetName: document.getElementById("streetName").value,
 
@@ -320,7 +269,6 @@ export default {
       axios
         .post(`https://iprojectgreenid.herokuapp.com/register`, payload)
         .then((resp) => {
-          console.log(resp, " INI ERROR THEN");
           console.log(resp.data, "INI HASIL LOGIN");
           this.$store.commit("setRegistrationDetails", resp);
           this.$store.commit("setVerificationId");
@@ -328,8 +276,8 @@ export default {
           this.$router.push("/");
         })
         .catch((err) => {
-          console.log(err.response.data.message, " INI ERROR");
-          Swal.fire(err.response.data.message.join(', '));
+          console.log(err, " INI ERROR");
+          Swal.fire(err.message);
           //Vue.$toast.error(error.response.data.message);
         });
     },
@@ -343,7 +291,7 @@ export default {
       /* eslint-disable no-new */
       
       let widget = new window.AddressFinder.Widget(
-        document.getElementById('address'),
+        document.getElementById('flatNumber'),
         'ADDRESSFINDER_DEMO_KEY',
         'AU',
         {
@@ -359,7 +307,6 @@ export default {
 
                 widget.on('address:select', function(fullAddress, metaData) {
 
-          document.getElementById('address').value = metaData.full_address
           document.getElementById('flatNumber').value = metaData.unit_identifier
 
             document.getElementById('streetNumber').value = metaData.street_number_1
