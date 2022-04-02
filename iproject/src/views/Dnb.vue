@@ -38,10 +38,10 @@
           conditions.</label
         >
       </div>
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="float-end my-3 btn btn-success">Submit</button>
       <button
         type="button"
-        class="btn btn-warning"
+        class="btn my-3 float-start btn-warning"
         @click.prevent="backHandler"
       >
         Back
