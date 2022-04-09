@@ -158,8 +158,13 @@
           ? 'btn-warning disabled'
           : this.sourceList.nswregodvs === 'FAILED'
           ? 'btn-danger'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
+      
       @click="driverLicenseHandler('nswregodvs')"
       type="button"
       data-toggle="tooltip"
@@ -203,6 +208,10 @@
           ? 'btn-warning disabled'
           : sourceList.vicregodvs === 'FAILED'
           ? 'btn-danger'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
       @click="driverLicenseHandler('vicregodvs')"
@@ -248,6 +257,10 @@
           ? 'btn-warning'
           : sourceList.qldregodvs === 'FAILED'
           ? 'btn-danger'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
       @click="driverLicenseHandler('qldregodvs')"
@@ -292,6 +305,10 @@
           ? 'btn-warning disabled'
           : sourceList.saregodvs === 'FAILED'
           ? 'btn-danger'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
       @click="driverLicenseHandler('saregodvs')"
@@ -336,6 +353,10 @@
           ? 'btn-warning disabled'
           : sourceList.waregodvs === 'FAILED'
           ? 'btn-danger'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
       @click="driverLicenseHandler('waregodvs')"
@@ -381,6 +402,10 @@
           ? 'btn-warning disabled'
           : sourceList.actregodvs === 'FAILED'
           ? 'btn-danger'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
       type=""
@@ -425,6 +450,10 @@
           ? 'btn-warning disabled'
           : sourceList.visa === 'FAILED'
           ? 'btn-danger disabled'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
       type=""
@@ -469,6 +498,10 @@
           ? 'btn-warning disabled'
           : sourceList.aec === 'FAILED'
           ? 'btn-danger'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
       type=""
@@ -512,6 +545,10 @@
           ? 'btn-warning disabled'
           : sourceList.dnb === 'FAILED'
           ? 'btn-danger'
+          : this.registerDetails.overallVerificationStatus == 'VERIFIED' ||
+        this.registerDetails.overallVerificationStatus ==
+          'VERIFIED_WITH_CHANGES'
+          ? 'btn-secondary disabled'
           : 'btn-secondary',
       ]"
       type=""

@@ -37,7 +37,7 @@
         <br />
 
         <div class="form-group">
-          <label for="surname">Lastname Name*</label>
+          <label for="surname">Last Name*</label>
           <input
             v-model="surname"
             type="text"

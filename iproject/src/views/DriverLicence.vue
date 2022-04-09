@@ -101,10 +101,10 @@
           Official Record Holder</label
         >
       </div>
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="float-end btn btn-success">Submit</button>
       <button
         type="button"
-        class="btn btn-warning"
+        class="float-end btn btn-warning"
         @click.prevent="backHandler"
       >
         Back
